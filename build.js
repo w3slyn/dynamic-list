@@ -3,8 +3,9 @@ const path = require('path');
 const ejs = require('ejs');
 
 // Defina os caminhos
-const templatesDir = path.join(__dirname, 'src', 'views');
+const templatesDir = path.join(__dirname, 'views');
 const buildDir = path.join(__dirname, 'dist');
+const publicDir = path.join(__dirname, 'public');
 
 // Crie a pasta de build se não existir
 if (!fs.existsSync(buildDir)) {
@@ -27,3 +28,24 @@ fs.readdir(templatesDir, (err, files) => {
         }
     });
 });
+
+// Copie arquivos estáticos
+const copyFiles = (src, dest) => {
+    if (!fs.existsSync(dest)) {
+        fs.mkdirSync(dest, { recursive: true });
+    }
+
+    const files = fs.readdirSync(src);
+    files.forEach(file => {
+        const currentSrc = path.join(src, file);
+        const currentDest = path.join(dest, file);
+        if (fs.lstatSync(currentSrc).isDirectory()) {
+            copyFiles(currentSrc, currentDest);
+        } else {
+            fs.copyFileSync(currentSrc, currentDest);
+        }
+    });
+};
+
+copyFiles(publicDir, buildDir);
+console.log('Copied static files');
