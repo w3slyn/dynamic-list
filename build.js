@@ -7,8 +7,8 @@ const templatesDir = path.join(__dirname, 'src', 'views');
 const buildDir = path.join(__dirname, 'dist');
 
 // Crie a pasta de build se não existir
-if (!fs.existsSync(buildDir)){
-    fs.mkdirSync(buildDir);
+if (!fs.existsSync(buildDir)) {
+    fs.mkdirSync(buildDir, { recursive: true });
 }
 
 // Processa os arquivos EJS
