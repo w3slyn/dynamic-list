@@ -1,6 +1,18 @@
 {
-  "dependencies": {
-    "ejs": "^3.1.10",
-    "express": "^4.21.1"
+  "name": "meu-projeto",
+  "version": "1.0.0",
+  "description": "Descrição do seu projeto",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "build": "echo 'No build step necessary'"
+  }, 
+  "dependencies": { 
+    "ejs": "^3.1.6",
+    "express": "^4.17.1" 
+  }, 
+  "engines": {
+    "node": ">=14.x" 
+  },
+  "author": "Weslyn Scotti"
   }
-}
